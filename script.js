@@ -40,5 +40,17 @@ if (predictionNumber == 1) {
     predictionText = "На WB отменят все комиссии";
 }
 
-const predictionItem = button.addEventListener('click', percent.append("Вероятность: " + (getRandomInt(0, 101) + '%')));
-const predictionItemText = button.addEventListener('click', prediction.prepend(predictionText));
+function getPrediction() {
+    const predictionPercent = percent.append("Вероятность: " + (getRandomInt(0, 101) + '%'));
+    const newPrediction = prediction.append(predictionText);
+    const predictionListPercent = document.createElement('h3');
+    predictionListPercent.textContent = predictionPercent;
+    const predictionListText = document.createElement('p');
+    predictionListText.textContent = newPrediction;
+    list.prepend(predictionListText);
+    predictionListText.prepend(newPrediction);
+
+    listItem.prepend(list);
+}
+
+button.addEventListener('click', getPrediction);
