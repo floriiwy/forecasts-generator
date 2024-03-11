@@ -28,29 +28,23 @@ function getRandomPrediction(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
-
-let predictionNumber = getRandomPrediction(1, 4);
-let predictionText = "";
-
-if (predictionNumber == 1) {
-    predictionText = "Все будет супер!";
-} else if (predictionNumber == 2) {
-    predictionText = "Все будет еще лучше!";
-} else {
-    predictionText = "На WB отменят все комиссии";
-}
-
 function getPrediction() {
-    const predictionPercent = percent.append("Вероятность: " + (getRandomInt(0, 101) + '%'));
-    const newPrediction = prediction.append(predictionText);
-    const predictionListPercent = document.createElement('h3');
-    predictionListPercent.textContent = predictionPercent;
-    const predictionListText = document.createElement('p');
-    predictionListText.textContent = newPrediction;
-    list.prepend(predictionListText);
-    predictionListText.prepend(newPrediction);
+    let predictionNumber = getRandomPrediction(1, 4);
+    let predictionText = "";
 
-    listItem.prepend(list);
+    if (predictionNumber == 1) {
+        predictionText = "Все будет супер!";
+    } else if (predictionNumber == 2) {
+        predictionText = "Все будет еще лучше!";
+    } else {
+        predictionText = "На WB отменят все комиссии";
+    }
+    percent.textContent = ("Вероятность: " + (getRandomInt(0, 101) + '%'));
+    prediction.textContent = predictionText;
+    const forecastToAdd = list.content.cloneNode(true);
+    forecastToAdd.querySelector('h3').textContent = percent.textContent;
+    forecastToAdd.querySelector('p').textContent = prediction.textContent;
+    listItem.prepend(forecastToAdd);
 }
 
 button.addEventListener('click', getPrediction);
